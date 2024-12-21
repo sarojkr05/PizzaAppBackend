@@ -1,8 +1,6 @@
 const User = require('../schema/userSchema');
-class UserRepository{
 
-
-    async findUser(parameters){
+    async function findUser(parameters){
         try {
             const response = await User.findOne({ ...parameters })
             return response;
@@ -10,7 +8,7 @@ class UserRepository{
             console.log(error)
         }
     }
-    async createUser(userDetails){
+    async function createUser(userDetails){
         try {
             const response = await User.create(userDetails);
             return response;
@@ -18,6 +16,8 @@ class UserRepository{
             console.log(error)
         }
     }
-}
 
-module.exports = UserRepository;
+module.exports = {
+    findUser,
+    createUser
+}
