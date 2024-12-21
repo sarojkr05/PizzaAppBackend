@@ -9,7 +9,6 @@ async function loginUser(authDetails) {
 
     //1. Check if there's a registered user with the given email
     const user = await findUser({ email });
-    console.log(user);
 
     if(!user){
         throw {message: "No user found with given email", statusCode: 404}

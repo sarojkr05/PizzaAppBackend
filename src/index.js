@@ -1,14 +1,16 @@
 const express = require('express');
+const cookieParser = require('cookie-parser');
 
 const ServerConfig = require('./config/serverConfig');
 const connectDB = require('./config/dbConfig');
 const userRouter = require('./routes/userRoutes');
 const cartRouter = require('./routes/cartRoutes');
 const authRoute = require('./routes/authRoutes');
+const { isLoggedIn } = require('./validation/authValidator');
 // const User = require('./schema/userSchema');
 
 const app = express();
-
+app.use(cookieParser());
 app.use(express.json());
 app.use(express.text());
 app.use(express.urlencoded({ extended: true }));
@@ -19,8 +21,10 @@ app.use('/users', userRouter); //This line connects the ueserRouter to the serve
 app.use('/carts', cartRouter);
 app.use('/auth', authRoute);
 
-app.post('/ping', (req, res) => {
+app.get('/ping', isLoggedIn, (req, res) => {
+    //Controller
     console.log(req.body);
+    console.log(req.cookies);
     return res.json({message: "pong"});
 })
 
