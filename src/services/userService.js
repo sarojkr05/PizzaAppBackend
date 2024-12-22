@@ -1,7 +1,6 @@
 const { createUser, findUser } = require("../repositories/userRepository");
 
     async function registerUser(userDetails) {
-        console.log("Hitting service layer")
         //it will create a brand new user in the db
 
         //1. We need to check if the user with with this email and mobile no already exists or not
