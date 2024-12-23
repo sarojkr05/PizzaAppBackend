@@ -30,13 +30,6 @@ const productSchema = new mongoose.Schema({
         type: Boolean,
         required: [true, "In stock status is required"],
         default: true,
-    },
-    aboutProduct: {
-        type: String,
-        trim: true,
-        minlength: [5, "About product must be at least 5 character long"],
-        maxlength: [20, "About product must be less than 25 character longer"]
-
     }
 }, {
     timestamps: true
