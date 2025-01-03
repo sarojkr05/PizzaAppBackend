@@ -12,6 +12,7 @@ const cloudinary = require('./config/cloudinaryConfig');
 const fs = require('fs/promises');
 const Product = require('./schema/productSchema');
 const productRouter = require('./routes/productRoute');
+const orderRouter = require('./routes/orderRoutes');
 // const User = require('./schema/userSchema');
 
 const app = express();
@@ -26,6 +27,7 @@ app.use('/users', userRouter); //This line connects the ueserRouter to the serve
 app.use('/carts', cartRouter);
 app.use('/auth', authRoute);
 app.use('/products', productRouter);
+app.use('/orders', orderRouter);
 
 app.get('/ping', isLoggedIn, (req, res) => {
     //Controller
@@ -34,26 +36,7 @@ app.get('/ping', isLoggedIn, (req, res) => {
     return res.json({message: "pong"});
 });
 
-app.post('/photo', uploader.single("incommingFile"), async (req, res) => {
-    console.log(req.file);
-    const result = await cloudinary.uploader.upload(req.file.path);
-    console.log("Result from cloudinary", result);
-    await fs.unlink(req.file.path);
-    return res.json({message: 'Okay'});
-});
-
-
 app.listen(ServerConfig.PORT, async () => {
     await connectDB();
     console.log(`Server started at port ${ServerConfig.PORT}...!!`);
-
-    // const newUser = await User.create({
-    //     email: 'saroj123@gmail.com',
-    //     password: '123456',
-    //     firstName: 'Saroj',
-    //     lastName: 'Kumar',
-    //     mobileNumber: '9999999999'
-    // })
-    // console.log("Created new user")
-    // console.log(newUser)
 });

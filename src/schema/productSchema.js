@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const productSchema = new mongoose.Schema({
     productName: {
         type: String,
-        require: [true, "Product name is required"],
+        required: [true, "Product name is required"],
         trim: true,
         minlength: [5, "Product name must be at least 5 character long"],
         maxlength: [25, "Product name must be less than 25 character longer"]
@@ -16,9 +16,14 @@ const productSchema = new mongoose.Schema({
     productImage: {
         type: String,
     },
+    quantity: {
+        type: Number,
+        required: true,
+        default: 10
+    },
     price: {
         type: Number,
-        require: [true, "Proce is required"],
+        required: [true, "Proce is required"],
         trim: true,
     },
     category: {
