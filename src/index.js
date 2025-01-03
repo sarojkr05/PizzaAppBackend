@@ -6,11 +6,6 @@ const connectDB = require('./config/dbConfig');
 const userRouter = require('./routes/userRoutes');
 const cartRouter = require('./routes/cartRoutes');
 const authRoute = require('./routes/authRoutes');
-const { isLoggedIn } = require('./validation/authValidator');
-const uploader = require('./middlewares/multerMiddleware');
-const cloudinary = require('./config/cloudinaryConfig');
-const fs = require('fs/promises');
-const Product = require('./schema/productSchema');
 const productRouter = require('./routes/productRoute');
 const orderRouter = require('./routes/orderRoutes');
 // const User = require('./schema/userSchema');
@@ -29,7 +24,7 @@ app.use('/auth', authRoute);
 app.use('/products', productRouter);
 app.use('/orders', orderRouter);
 
-app.get('/ping', isLoggedIn, (req, res) => {
+app.get('/ping', (req, res) => {
     //Controller
     console.log(req.body);
     console.log(req.cookies);
