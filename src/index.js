@@ -9,12 +9,13 @@ const cartRouter = require('./routes/cartRoutes');
 const authRoute = require('./routes/authRoutes');
 const productRouter = require('./routes/productRoute');
 const orderRouter = require('./routes/orderRoutes');
+const serverConfig = require('./config/serverConfig');
 // const User = require('./schema/userSchema');
 
 const app = express();
 
 app.use(cors({
-    origin: 'https://foodcommafronted.netlify.app', // Allow to server to accept request from different origin
+    origin: serverConfig.FRONTEND_URL, // Allow to server to accept request from different origin
     credentials: true, // Allow session cookie from browser to pass through
 }));
 
