@@ -1,4 +1,4 @@
-const jwt = require('jsonwebtoken');    
+const jwt = require('jsonwebtoken');
 const { JWT_SECRET, COOKIE_SECURE, FRONTEND_URL } = require('../config/serverConfig');
 const UnAuthorisedError = require('../utils/unauthorisedError');
 
@@ -17,8 +17,7 @@ async function isLoggedIn(req, res, next) {
 
     try {
         const decoded = jwt.verify(token, JWT_SECRET);
-        console.log(decoded)
-        if(decoded.exp < (Date.now() / 1000))            
+        console.log(decoded, decoded.exp, Date.now() / 1000);
 
         if(!decoded) {
             throw new UnAuthorisedError();

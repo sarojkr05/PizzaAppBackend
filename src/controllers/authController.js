@@ -1,9 +1,10 @@
-const { FRONTEND_URL, COOKIE_SECURE } = require("../config/serverConfig");
+const { COOKIE_SECURE, FRONTEND_URL } = require("../config/serverConfig");
 const { loginUser } = require("../services/authService");
+
 
 async function logout(req, res) {
 
-    console.log("Cookies from frontend", req.cookies)
+    console.log("Cookie from frontend", req.cookies);
 
     res.cookie("authToken", "", {
         httpOnly: true,
@@ -13,14 +14,14 @@ async function logout(req, res) {
         domain: FRONTEND_URL
     });
     return res.status(200).json({
-            success: true,
-            message: "Log out successful",
-            error: {},
-            data: {}
+        success: true,
+        message: "Log out successfull",
+        error: {},
+        data: {}
     });
 }
 async function login(req, res) {
-
+    
     try {
         const loginPayload = req.body;
 
@@ -29,21 +30,21 @@ async function login(req, res) {
         res.cookie("authToken", response.token, {
             httpOnly: true,
             secure: COOKIE_SECURE,
-            maxAge: 7 * 24 * 60 * 60 * 1000,
-            sameSite: 'lax',
-            domain: FRONTEND_URL
-        });
+            sameSite: "lax",
+            domain: FRONTEND_URL,
+            maxAge: 7 * 24 * 60 * 60 * 1000
+        })
 
         return res.status(200).json({
             success: true,
-            message: 'logged in successfully',
+            message: 'Logged in successfully',
             data: {
                 userRole: response.userRole,
                 userData: response.userData
             },
             error: {}
         })
-    } catch (error) {
+    } catch(error) {
         return res.status(error.statusCode).json({
             success: false,
             data: {},
@@ -51,9 +52,9 @@ async function login(req, res) {
             error: error
         })
     }
+
 }
 
 module.exports = {
-    login,
-    logout
+    login,logout
 }
