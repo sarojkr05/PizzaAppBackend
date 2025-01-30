@@ -8,7 +8,7 @@ async function logout(req, res) {
     res.cookie("authToken", "", {
         httpOnly: true,
         secure: COOKIE_SECURE,
-        sameSite: "None",
+        sameSite: "lax",
         maxAge: 7 * 24 * 60 * 60 * 1000,
         domain: FRONTEND_URL
     });
@@ -30,7 +30,7 @@ async function login(req, res) {
             httpOnly: true,
             secure: COOKIE_SECURE,
             maxAge: 7 * 24 * 60 * 60 * 1000,
-            sameSite: 'None',
+            sameSite: 'lax',
             domain: FRONTEND_URL
         });
 

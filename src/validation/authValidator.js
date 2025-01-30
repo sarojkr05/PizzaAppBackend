@@ -37,7 +37,7 @@ async function isLoggedIn(req, res, next) {
         if(error.name === "TokenExpiredError") {
             res.cookie("authToken", "", {
                 httpOnly: true,
-                sameSite: "None",
+                sameSite: "lax",
                 secure: COOKIE_SECURE,
                 maxAge: 7 * 24 * 60 * 60 * 1000,
                 domain: FRONTEND_URL
