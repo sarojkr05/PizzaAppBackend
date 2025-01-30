@@ -14,7 +14,7 @@ const orderRouter = require('./routes/orderRoutes');
 const app = express();
 
 app.use(cors({
-    origin: 'http://localhost:5173', // Allow to server to accept request from different origin
+    origin: 'https://foodcommafronted.netlify.app/', // Allow to server to accept request from different origin
     credentials: true, // Allow session cookie from browser to pass through
 }));
 
