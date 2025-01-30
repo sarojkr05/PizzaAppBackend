@@ -1,5 +1,5 @@
 const express = require('express');
-const { addProduct, getProduct, deleteProduct } = require('../controllers/productController');
+const { addProduct, getProduct, deleteProduct, getProduts } = require('../controllers/productController');
 const uploader = require('../middlewares/multerMiddleware');
 const { isLoggedIn, isAdmin } = require('../validation/authValidator');
 
@@ -13,6 +13,7 @@ productRouter.post(
     addProduct
 );
 productRouter.get('/:id', getProduct);
+productRouter.get('/', getProduts);
 productRouter.delete('/:id', deleteProduct);
 
 module.exports = productRouter; //Exporting the router 
