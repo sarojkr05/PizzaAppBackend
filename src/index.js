@@ -18,7 +18,6 @@ app.use(cors({
     origin: serverConfig.FRONTEND_URL, // Allow to server to accept request from different origin
     credentials: true, // Allow session cookie from browser to pass through
 }));
-
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.text());
